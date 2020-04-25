@@ -7,7 +7,8 @@ namespace Api.Models.Company
     public class CompanyModel
     {
         [Key]
-        public int CompanyId { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; }
 
         [Display(Name = "Полное наименование")]
         public string Name { get; set; }
