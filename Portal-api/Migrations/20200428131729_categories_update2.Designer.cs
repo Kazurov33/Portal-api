@@ -3,15 +3,17 @@ using System;
 using Api.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace api.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200428131729_categories_update2")]
+    partial class categories_update2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -114,7 +116,7 @@ namespace api.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("text");
 
-                    b.Property<int?>("HighDepartmentId")
+                    b.Property<int>("HighDepartmentId")
                         .HasColumnType("integer");
 
                     b.Property<int>("MainEmployeeId")
@@ -127,8 +129,6 @@ namespace api.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CompanyId");
-
-                    b.HasIndex("HighDepartmentId");
 
                     b.ToTable("Departments");
                 });
@@ -424,10 +424,6 @@ namespace api.Migrations
                     b.HasOne("Api.Models.Company.CompanyModel", "Company")
                         .WithMany("Departments")
                         .HasForeignKey("CompanyId");
-
-                    b.HasOne("Api.Models.Company.Department", "HighDepartment")
-                        .WithMany("LowDepartments")
-                        .HasForeignKey("HighDepartmentId");
                 });
 
             modelBuilder.Entity("Api.Models.Company.Employee", b =>

@@ -13,9 +13,9 @@ namespace Api.Controllers
   [Route("[controller]")]
   public class RolesController : ControllerBase
   {
-    private readonly ILogger<CountriesController> _logger;
+    private readonly ILogger<RolesController> _logger;
     private readonly ApplicationDbContext _appDbContext;
-    public RolesController(ApplicationDbContext appDbContext, ILogger<CountriesController> logger)
+    public RolesController(ApplicationDbContext appDbContext, ILogger<RolesController> logger)
     {
       _logger = logger;
       _appDbContext = appDbContext;

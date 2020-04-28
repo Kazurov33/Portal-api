@@ -14,9 +14,9 @@ namespace Api.Controllers
   [Route("[controller]")]
   public class CompaniesController : ControllerBase
   {
-    private readonly ILogger<CitiesController> _logger;
+    private readonly ILogger<CompaniesController> _logger;
     private readonly ApplicationDbContext _appDbContext;
-    public CompaniesController (ApplicationDbContext appDbContext, ILogger<CitiesController> logger)
+    public CompaniesController (ApplicationDbContext appDbContext, ILogger<CompaniesController> logger)
     {
       _logger = logger;
       _appDbContext = appDbContext;

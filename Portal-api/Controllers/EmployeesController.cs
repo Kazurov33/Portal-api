@@ -14,9 +14,9 @@ namespace Api.Controllers
   [Route("[controller]")]
   public class EmployeesController : ControllerBase
   {
-    private readonly ILogger<DistrictsController> _logger;
+    private readonly ILogger<EmployeesController> _logger;
     private readonly ApplicationDbContext _appDbContext;
-    public EmployeesController(ApplicationDbContext appDbContext, ILogger<DistrictsController> logger)
+    public EmployeesController(ApplicationDbContext appDbContext, ILogger<EmployeesController> logger)
     {
       _logger = logger;
       _appDbContext = appDbContext;
@@ -57,7 +57,7 @@ namespace Api.Controllers
         }
         return Ok(employees);
     }
-        // PUT: api/Employee/5
+        // PUT: Employees/5
         [HttpPut("{id}")]
         public IActionResult PutEmployee(int id, Employee employee)
         {
@@ -66,7 +66,7 @@ namespace Api.Controllers
                 return BadRequest();
             }
 
-            _appDbContext.Entry(employee).State = EntityState.Modified;
+            _appDbContext.Entry(employee).Property(x=>x.DepartmentId).IsModified = true;
             _appDbContext.SaveChanges();
 
             return Ok(employee);

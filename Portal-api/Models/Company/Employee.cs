@@ -8,10 +8,14 @@ namespace Api.Models.Company
     {
         [Key]
         public int EmployeeId { get; set; }
-        public string UserName { get; set; }
         [Required]
+        public string UserName { get; set; }
         public string Position { get; set; }
-        
+       
+        public int? RoleId { get; set; }
+        [JsonIgnore]
+        public Role Role { get; set; }
+
         public int? CompanyId { get; set; }
         [JsonIgnore]
         public CompanyModel Company { get; set; }
