@@ -8,6 +8,7 @@ namespace Api.Controllers
     [Authorize]
     public class IdentityController : ControllerBase
     {
+        [NonAction]
         public IActionResult Get()
         {
             return new JsonResult(from c in User.Claims select new { c.Type, c.Value });

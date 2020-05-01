@@ -15,18 +15,17 @@ namespace Api.Models.Company
     public string Description { get; set; }
     public int TimeofTaken { get; set; }
     public int TimeofExecution { get; set; }
-    public int NestingLevel { get; set; }
     [JsonIgnore]
     public Category HighCategory { get; set; }
     [JsonIgnore]
     public CompanyModel Company { get; set; }
 
     public ICollection<Employee> Employees { get; set; }
-    public ICollection<Category> LowCategories { get; set; }
+    public ICollection<Category> Children { get; set; }
     public Category()
     {
         Employees = new List<Employee>();
-        LowCategories = new List<Category>();
+        Children = new List<Category>();
     }
   }
 }

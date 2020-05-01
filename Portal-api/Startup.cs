@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Reflection;
+using System.IO;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -13,6 +15,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 //Microsoft.Extensions.DependencyInjection
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using Microsoft.EntityFrameworkCore;
 using Api.Data;
 namespace Api
@@ -43,7 +46,13 @@ namespace Api
            options.Audience = "api1";
          });
 
-      services.AddCors(options =>
+        // Register the Swagger generator, defining 1 or more Swagger documents
+        services.AddSwaggerGen(c =>
+        {
+            c.SwaggerDoc("v1", new OpenApiInfo { Title = "Portal-Api", Version = "v1" });
+        });
+
+            services.AddCors(options =>
       {
               // this defines a CORS policy called "default"
               options.AddPolicy("default", policy =>
@@ -62,6 +71,16 @@ namespace Api
       {
         app.UseDeveloperExceptionPage();
       }
+
+      // Enable middleware to serve generated Swagger as a JSON endpoint.
+      app.UseSwagger();
+
+      // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
+      // specifying the Swagger JSON endpoint.
+      app.UseSwaggerUI(c =>
+      {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Portal-Api V1");
+      });
 
       //app.UseHttpsRedirection();
 

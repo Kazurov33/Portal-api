@@ -24,7 +24,7 @@ namespace Api.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllCategories()
         {
-            return Ok(await _appDbContext.Categories.Include(x => x.LowCategories).ThenInclude(p => p.LowCategories).Include(x=>x.Employees).ToListAsync());
+            return Ok(await _appDbContext.Categories.Include(x => x.Children).Include(x=>x.Employees).ToListAsync());
         }
         [HttpGet("{id}")]
         public async Task<IActionResult> GetCategory(int id)
